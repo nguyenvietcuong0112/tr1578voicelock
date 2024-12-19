@@ -23,7 +23,7 @@ import com.mallegan.ads.util.Admob;
 
 import java.util.Map;
 
-public class LanguageActivity extends BaseActivity {
+public class  LanguageActivity extends BaseActivity {
 
     String codeLang = "en";
     LanguageStartAdapter languageAdapter;
@@ -37,6 +37,8 @@ public class LanguageActivity extends BaseActivity {
         SystemUtil.setLocale(this);
         binding = ActivityLanguageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getWindow().setFlags(1024, 1024);
+
 
         if (SharePreferenceUtils.isOrganic(this)) {
             AppsFlyerLib.getInstance().registerConversionListener(this, new AppsFlyerConversionListener() {

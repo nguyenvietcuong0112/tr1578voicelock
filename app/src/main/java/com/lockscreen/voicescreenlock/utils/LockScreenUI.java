@@ -382,18 +382,47 @@ public class LockScreenUI extends View {
         final ImageView textView = (ImageView) inflate.findViewWithTag("show_hide_pass");
         final TextView textView2 = (TextView) inflate.findViewWithTag("tv_hint");
         final LinearLayout relativeLayout = (LinearLayout) inflate.findViewById(R.id.root_layout_enter_pincode);
-        Glide.with(context).load(Integer.valueOf((int) R.drawable.bg)).listener(new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(GlideException glideException, Object obj, Target<Drawable> target, boolean z) {
-                return true;
-            }
+        sharedPreferences = context.getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE);
+        int selectedTheme = sharedPreferences.getInt("selectedTheme", -1);
 
-            @Override
-            public boolean onResourceReady(Drawable drawable, Object obj, Target<Drawable> target, DataSource dataSource, boolean z) {
-                relativeLayout.setBackground(drawable);
-                return true;
-            }
-        }).submit();
+        if (selectedTheme >= 0 && selectedTheme < themeList.size()) {
+            int themeResourceId = themeList.get(selectedTheme);
+
+            Glide.with(context)
+                    .load(themeResourceId)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(GlideException e, Object obj, Target<Drawable> target, boolean z) {
+                            new Handler(Looper.getMainLooper()).post(() ->
+                                    relativeLayout.setBackground(new ColorDrawable(Color.parseColor("#2e2e2e")))
+                            );
+                            return true;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(final Drawable drawable, Object obj, Target<Drawable> target, DataSource dataSource, boolean z) {
+                            new Handler(Looper.getMainLooper()).post(() ->
+                                    relativeLayout.setBackground(drawable)
+                            );
+                            return true;
+                        }
+                    })
+                    .submit();
+        } else {
+            relativeLayout.setBackground(new ColorDrawable(Color.parseColor("#2e2e2e")));
+        }
+//        Glide.with(context).load(Integer.valueOf((int) R.drawable.bg)).listener(new RequestListener<Drawable>() {
+//            @Override
+//            public boolean onLoadFailed(GlideException glideException, Object obj, Target<Drawable> target, boolean z) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onResourceReady(Drawable drawable, Object obj, Target<Drawable> target, DataSource dataSource, boolean z) {
+//                relativeLayout.setBackground(drawable);
+//                return true;
+//            }
+//        }).submit();
         final OnClickListener onClickListener = new OnClickListener() {
             @Override
             public void onClick(View view) {

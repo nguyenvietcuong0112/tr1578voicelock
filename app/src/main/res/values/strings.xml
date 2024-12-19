@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Find Phone with Clapping</string>
+    <string name="app_name">Voice Lock</string>
 
 
     <string name="account_url">https://play.google.com/store/apps/details?id=com.finder.clap.findphone.whistle.byclapping</string>
@@ -18,11 +18,15 @@
     <string name="languages">Select language</string>
     <string name="skip">Skip</string>
     <string name="done">Done</string>
-    <string name="note_continue1">Find your phone immediately with\njust a clap</string>
-    <string name="note_continue2">Locate your device easily with\nvibration and light signals</string>
-    <string name="note_continue3">Customize with a wide range of\ndiverse sounds</string>
-    <string name="note_continue4">Many sounds for you to\nchoose from</string>
-    <string name="guide_1">     You can track the Blood Pressure easily and exactly on report.</string>
+    <string name="note_continue1">Voice Lock</string>
+    <string name="note_continue2">Pin Lock</string>
+    <string name="note_continue3">Lock Wallpaper</string>
+    <string name="note_continue4">Theme</string>
+    <string name="des1">Use your voice to unlock your phone.</string>
+    <string name="des2">Easily unlock your phone.</string>
+    <string name="des3">Enjoy your lock wallpaper.</string>
+    <string name="des4">Beautiful theme store to set lock screen.</string>
+    <string name="guide_1">You can track the Blood Pressure easily and exactly on report.</string>
     <string name="guide_2">See the change of your health in every bar graph on it.</string>
     <string name="guide_3">Give you useful knowledge about blood pressure.</string>
     <string name="txt_this_action_can_contain_ads">This action can contain ads…</string>
@@ -153,7 +157,7 @@
     <string name="s7" translatable="false">Test Ad</string>
     <string name="search_menu_title" translatable="false">Search</string>
     <string name="set_new_pin" translatable="false">SET NEW PIN</string>
-    <string name="set_new_voice_password" translatable="false">SET NEW VOICE PASSWORD</string>
+    <string name="set_new_voice_password" translatable="false">Set New Voice Password</string>
     <string name="show_pin" translatable="false">SHOW PIN</string>
     <string name="side_sheet_accessibility_pane_title" translatable="false">Side Sheet</string>
     <string name="status_bar_notification_info_overflow" translatable="false">999+</string>

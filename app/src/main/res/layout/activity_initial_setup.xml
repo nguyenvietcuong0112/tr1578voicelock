@@ -8,17 +8,19 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_height="wrap_content">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:fontFamily="@font/arsenal_bold"
             android:text="Let’s complete initial setup"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="36sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -36,10 +38,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/arsenal_bold"
                 android:text="You must set voice password and alternate pin before using this app."
-                android:textColor="@color/white"
+                android:textColor="#ACA6CE"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -178,7 +179,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/arsenal_regular"
                     android:text="Suggestion: You can use a nickname or friendly name that you often use. You can change it later in the settings."
-                    android:textColor="@color/white"
+                    android:textColor="#ACA6CE"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -205,16 +206,6 @@
                     android:textColor="@color/white"
                     android:visibility="invisible" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/arsenal_bold"
-                    android:text="After completing all necessary setup, you can start using the application right away"
-                    android:textAlignment="center"
-                    android:textColor="#80000000"
-                    android:textSize="13sp" />
             </RelativeLayout>
         </LinearLayout>
 

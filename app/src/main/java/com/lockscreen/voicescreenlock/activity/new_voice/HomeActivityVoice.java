@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.lockscreen.voicescreenlock.R;
+import com.lockscreen.voicescreenlock.activity.settingapp.SettingAppActivity;
 import com.lockscreen.voicescreenlock.activity.voice_passcode.LockActivity;
 import com.lockscreen.voicescreenlock.activity.voice_passcode.ThemeActivity;
 import com.lockscreen.voicescreenlock.utils.StartStopLockService;
@@ -28,7 +29,7 @@ public class HomeActivityVoice extends AppCompatActivity implements View.OnClick
 
     LinearLayout ll_pin;
     ImageView ll_settings;
-    ImageView back_button;
+//    ImageView back_button;
     ImageView btnLock;
     ImageView btnTheme;
     ImageView btnPreview;
@@ -48,7 +49,7 @@ public class HomeActivityVoice extends AppCompatActivity implements View.OnClick
         this.startStopLockService = new StartStopLockService();
         getSharedPreferences("INITIALIZE", 0).edit().putBoolean("initialization_success", true).apply();
 
-        this.back_button.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+//        this.back_button.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         checkDrawOverOtherAppsPermission(this);
         if (getSharedPreferences("voice_recognition_preference", 0).getBoolean("lock_service", true)) {
@@ -72,7 +73,7 @@ public class HomeActivityVoice extends AppCompatActivity implements View.OnClick
 
         this.ll_pin = (LinearLayout) findViewById(R.id.ll_keypad_pin);
         this.ll_settings = (ImageView) findViewById(R.id.ll_settings);
-        this.back_button = (ImageView) findViewById(R.id.back_button);
+//        this.back_button = (ImageView) findViewById(R.id.back_button);
         this.ll_voice_password = (LinearLayout) findViewById(R.id.ll_voice_password);
         this.sc_voiceLockService = (SwitchCompat) findViewById(R.id.voice_lock_service);
         this.btnLock = (ImageView) findViewById(R.id.btnLock);
@@ -130,7 +131,7 @@ public class HomeActivityVoice extends AppCompatActivity implements View.OnClick
         if(id == R.id.ll_keypad_pin){
             startActivity(new Intent(this, UpdateAlternatePinActivity.class));
         }else if(id == R.id.ll_settings){
-            startActivity(new Intent(this, AppSettingsPreferenceActivity.class));
+            startActivity(new Intent(this, SettingAppActivity.class));
         }else if(id == R.id.ll_voice_password){
             startActivity(new Intent(this, UpdateVoicePasswordActivity.class));
         } else if(id == R.id.btnLock) {

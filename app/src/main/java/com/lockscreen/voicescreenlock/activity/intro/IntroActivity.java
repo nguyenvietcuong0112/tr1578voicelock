@@ -41,6 +41,8 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
         SystemConfiguration.setStatusBarColor(this, R.color.transparent, SystemConfiguration.IconColor.ICON_DARK);
         binding = ActivityIntroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getWindow().setFlags(1024, 1024);
+
         if (SystemUtil.isNetworkConnected(this)) {
             binding.frAds.setVisibility(View.VISIBLE);
         } else binding.frAds.setVisibility(View.GONE);

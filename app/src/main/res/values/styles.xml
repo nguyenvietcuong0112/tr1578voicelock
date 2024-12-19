@@ -28,6 +28,14 @@
         <item name="colorControlActivated">@color/appcolor</item>
     </style>
 
+    <style name="CustomCheckBoxPreference" parent="Preference">
+        <item name="android:colorAccent">@color/custom_checkbox_color</item>
+        <item name="android:titleTextColor">@color/custom_text_color</item>
+        <item name="android:textColor">@color/custom_text_color</item>
+        <item name="android:textColorSecondary">@color/custom_checkbox_color</item>
+        <item name="android:textColorPrimary">@color/custom_checkbox_color</item>
+    </style>
+
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">@color/green_20C197</item>
@@ -52,4 +60,12 @@
         <item name="android:windowDisablePreview">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="RoundedShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+
 </resources>

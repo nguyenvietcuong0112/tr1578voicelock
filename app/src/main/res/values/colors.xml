@@ -27,6 +27,8 @@
     <color name="color_FF9AE3">#FF9AE3</color>
     <color name="color_2B65FF">#2B65FF</color>
     <color name="transparent">#00000000</color>
+    <color name="custom_checkbox_color">@color/white</color>
+    <color name="custom_text_color">@color/white</color>
 
     <color name="mainColor">#FF6644</color>
     <color name="bottom_check">#EA6D6D</color>

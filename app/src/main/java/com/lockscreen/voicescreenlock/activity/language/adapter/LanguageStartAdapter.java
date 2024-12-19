@@ -65,10 +65,10 @@ public class LanguageStartAdapter extends RecyclerView.Adapter<RecyclerView.View
             binding.ivAvatar.setImageDrawable(context.getDrawable(data.getImage()));
             binding.tvTitle.setText(data.getLanguageName());
             if (data.getCheck()) {
-                binding.getRoot().setBackgroundColor(Color.parseColor("#F1EFFB"));
+                binding.getRoot().setBackgroundColor(Color.parseColor("#1B1732"));
                 binding. v2.setVisibility(View.VISIBLE);
             } else {
-                binding.getRoot().setBackgroundColor(Color.parseColor("#FFFFFF"));
+                binding.getRoot().setBackgroundColor(Color.parseColor("#1B1732"));
                 binding.v2.setVisibility(View.GONE);
             }
             binding.getRoot().setOnClickListener(v -> {

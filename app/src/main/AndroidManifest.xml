@@ -59,6 +59,7 @@
         <activity android:name=".activity.voice_passcode.LockActivity" />
         <activity android:name=".activity.voice_passcode.ThemeActivity" />
         <activity android:name=".activity.voice_passcode.SetThemeActivity" />
+        <activity android:name=".activity.settingapp.SettingAppActivity" />
 
         <service
             android:name=".jobService.LockScreenForegroundService"

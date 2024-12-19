@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.lockscreen.voicescreenlock.R;
 import com.lockscreen.voicescreenlock.activity.voice_passcode.SetThemeActivity;
 
@@ -48,7 +49,7 @@ public class ThemeAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        ImageView imageView = view.findViewById(R.id.themeImage);
+        ShapeableImageView imageView = view.findViewById(R.id.themeImage);
         imageView.setImageResource(themeList.get(position));
 
         if (selectedPosition == position) {

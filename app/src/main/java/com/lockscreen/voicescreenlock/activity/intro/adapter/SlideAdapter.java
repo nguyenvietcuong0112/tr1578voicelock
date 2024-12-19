@@ -17,6 +17,7 @@ public class SlideAdapter extends PagerAdapter {
 
     private final int[] images = {R.drawable.intro1, R.drawable.intro2, R.drawable.intro3,R.drawable.intro4};
     private final int[] titles = {R.string.note_continue1, R.string.note_continue2, R.string.note_continue3, R.string.note_continue4};
+    private final int[] description = {R.string.des1, R.string.des2, R.string.des3, R.string.des4};
     private final Context context;
 
     public SlideAdapter(Context context) {
@@ -39,6 +40,7 @@ public class SlideAdapter extends PagerAdapter {
         ItemSlideLayoutBinding binding = ItemSlideLayoutBinding.inflate(LayoutInflater.from(context), container, false);
         binding.imLogoSlide.setImageResource(images[position]);
         binding.tvTitle.setText(titles[position]);
+        binding.tvDes.setText(description[position]);
         container.addView(binding.getRoot());
         return binding.getRoot();
     }

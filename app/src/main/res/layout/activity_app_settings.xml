@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/_25sdp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/appbar"
+        android:background="#1B1732"
         android:layout_width="match_parent"
         android:layout_height="56dp">
 
@@ -24,7 +25,7 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/arsenal_bold"
             android:text="Settings"
-            android:textColor="@color/black"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
     </RelativeLayout>
@@ -32,7 +33,8 @@
         android:id="@+id/preference_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_70sdp" />
+        android:background="#1B1732"
+        />
 
 
-</RelativeLayout>
+</LinearLayout>

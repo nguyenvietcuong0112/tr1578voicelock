@@ -38,6 +38,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -85,7 +86,7 @@
         android:orientation="vertical"
         android:id="@+id/keypad_layout"
         android:paddingLeft="15dp"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/_20sdp"
         android:paddingRight="15dp"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"

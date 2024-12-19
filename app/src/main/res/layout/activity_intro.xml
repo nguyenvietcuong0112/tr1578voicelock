@@ -8,7 +8,7 @@
         android:background="@color/white">
 
         <LinearLayout
-            android:background="@color/white"
+            android:background="@color/gntGray"
             android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -22,6 +22,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center"
+            android:background="@drawable/ic_previous"
+            android:fontFamily="@font/arsenal_bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_cricle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ll_cricle" />
 
         <LinearLayout
             android:id="@+id/ll_cricle"
@@ -75,18 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/btn_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:background="@drawable/ic_previous"
-                    android:fontFamily="@font/arsenal_bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/ll_cricle"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/ll_cricle" />
+
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -95,8 +96,8 @@
                     >
                     <ImageView
                         android:id="@+id/btn_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:background="@drawable/ic_next_intro"
                         android:fontFamily="@font/arsenal_bold"
                         />

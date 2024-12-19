@@ -1,13 +1,22 @@
 package com.lockscreen.voicescreenlock.activity.new_voice;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,103 +45,68 @@ public class AppSettingsPreferenceActivity extends AppCompatActivity {
     }
 
 
-    public static class Setting_Preference_Fragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
-        CheckBoxPreference cbp_datetime;
-        CheckBoxPreference cbp_lockEnableDisable;
-        CheckBoxPreference cbp_sound;
-        CheckBoxPreference cbp_vibration;
+    public static class Setting_Preference_Fragment extends Fragment {
 
+        private CheckBox cbLockService;
+        private CheckBox cbDatetime;
+        private CheckBox cbSound;
+        private CheckBox cbVibration;
 
-        PreferenceManager preferenceManager;
-        Preference preview;
-        SharedPreferences sp;
-        StartStopLockService startStopLockService = new StartStopLockService();
+        private SharedPreferences sharedPreferences;
+        private StartStopLockService startStopLockService = new StartStopLockService();
 
+        @Nullable
         @Override
-        public void onCreatePreferences(Bundle bundle, String str) {
-            setPreferencesFromResource(R.xml.preference_screen, str);
-            if (getActivity() != null) {
-                PreferenceManager preferenceManager = getPreferenceManager();
-                this.preferenceManager = preferenceManager;
-                preferenceManager.setSharedPreferencesName("voice_recognition_preference");
-                this.sp = getActivity().getSharedPreferences("voice_recognition_preference", 0);
-
-
-                this.cbp_lockEnableDisable = (CheckBoxPreference) findPreference("lock_service");
-                this.cbp_datetime = (CheckBoxPreference) findPreference("voice_lock_date_time");
-                this.cbp_sound = (CheckBoxPreference) findPreference("sound_flag");
-                this.cbp_vibration = (CheckBoxPreference) findPreference("vibration_flag");
-                Preference findPreference = findPreference("preview");
-                this.preview = findPreference;
-                if (findPreference != null) {
-                    findPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                        @Override
-                        public boolean onPreferenceClick(Preference preference) {
-                            Setting_Preference_Fragment.this.startActivity(new Intent(Setting_Preference_Fragment.this.getActivity(), PreviewLockScreen.class));
-                            return true;
-                        }
-                    });
-                }
-            }
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            // Inflate the custom layout
+            return inflater.inflate(R.layout.fragment_settings, container, false);
         }
 
         @Override
-        public void onResume() {
-            super.onResume();
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
 
+            // Initialize SharedPreferences
+            sharedPreferences = requireContext().getSharedPreferences("voice_recognition_preference", Context.MODE_PRIVATE);
 
-            CheckBoxPreference checkBoxPreference = this.cbp_lockEnableDisable;
-            if (checkBoxPreference != null) {
-                checkBoxPreference.setChecked(this.sp.getBoolean("lock_service", true));
-                this.cbp_lockEnableDisable.setOnPreferenceChangeListener(this);
-            }
-            CheckBoxPreference checkBoxPreference2 = this.cbp_datetime;
-            if (checkBoxPreference2 != null) {
-                checkBoxPreference2.setChecked(this.sp.getBoolean("voice_lock_date_time", true));
-                this.cbp_datetime.setOnPreferenceChangeListener(this);
-            }
-            CheckBoxPreference checkBoxPreference3 = this.cbp_sound;
-            if (checkBoxPreference3 != null) {
-                checkBoxPreference3.setChecked(this.sp.getBoolean("sound_flag", true));
-                this.cbp_sound.setOnPreferenceChangeListener(this);
-            }
-            CheckBoxPreference checkBoxPreference4 = this.cbp_vibration;
-            if (checkBoxPreference4 != null) {
-                checkBoxPreference4.setChecked(this.sp.getBoolean("vibration_flag", true));
-                this.cbp_vibration.setOnPreferenceChangeListener(this);
-            }
-        }
+            // Find CheckBox views
+            cbLockService = view.findViewById(R.id.cb_lock_service);
+            cbDatetime = view.findViewById(R.id.cb_datetime);
+            cbSound = view.findViewById(R.id.cb_sound);
+            cbVibration = view.findViewById(R.id.cb_vibration);
 
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object obj) {
-            String key = preference.getKey();
+            // Set initial states from SharedPreferences
+            cbLockService.setChecked(sharedPreferences.getBoolean("lock_service", true));
+            cbDatetime.setChecked(sharedPreferences.getBoolean("voice_lock_date_time", true));
+            cbSound.setChecked(sharedPreferences.getBoolean("sound_flag", true));
+            cbVibration.setChecked(sharedPreferences.getBoolean("vibration_flag", true));
 
-
-            if (key.equalsIgnoreCase("lock_service")) {
-                this.sp.edit().putBoolean("lock_service", this.cbp_datetime.isChecked()).apply();
-                if (!this.cbp_lockEnableDisable.isChecked()) {
-                    this.startStopLockService.startServiceForAllAndroidAPILevel(getActivity());
-                    Log.e(AppSettingsPreferenceActivity.TAG, "Lock Service Started");
-                    return true;
+            // Set listeners
+            cbLockService.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                sharedPreferences.edit().putBoolean("lock_service", isChecked).apply();
+                if (isChecked) {
+                    startStopLockService.startServiceForAllAndroidAPILevel(requireContext());
+                    Log.e("Settings", "Lock Service Started");
+                } else {
+                    startStopLockService.stopServiceInAllAPILevel(requireContext());
+                    Log.e("Settings", "Lock Service Stopped");
                 }
-                this.startStopLockService.stopServiceInAllAPILevel(getActivity());
-                Log.e(AppSettingsPreferenceActivity.TAG, "Lock Service Stopped");
-                return true;
-            } else if (key.equalsIgnoreCase("voice_lock_date_time")) {
-                this.sp.edit().putBoolean("voice_lock_date_time", this.cbp_datetime.isChecked()).apply();
-                Log.e(AppSettingsPreferenceActivity.TAG, "Date Time Shwo hide " + this.cbp_datetime.isChecked());
-                return true;
-            } else if (key.equalsIgnoreCase("sound_flag")) {
-                this.sp.edit().putBoolean("sound_flag", this.cbp_sound.isChecked()).apply();
-                Log.e(AppSettingsPreferenceActivity.TAG, "Sound enabled / disabled " + this.cbp_sound.isChecked());
-                return true;
-            } else if (key.equalsIgnoreCase("vibration_flag")) {
-                this.sp.edit().putBoolean("vibration_flag", this.cbp_vibration.isChecked()).apply();
-                Log.e(AppSettingsPreferenceActivity.TAG, "vibration enabled / disabled " + this.cbp_vibration.isChecked());
-                return true;
-            } else {
-                return true;
-            }
+            });
+
+            cbDatetime.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                sharedPreferences.edit().putBoolean("voice_lock_date_time", isChecked).apply();
+                Log.e("Settings", "Date Time Show/Hide: " + isChecked);
+            });
+
+            cbSound.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                sharedPreferences.edit().putBoolean("sound_flag", isChecked).apply();
+                Log.e("Settings", "Sound Enabled/Disabled: " + isChecked);
+            });
+
+            cbVibration.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                sharedPreferences.edit().putBoolean("vibration_flag", isChecked).apply();
+                Log.e("Settings", "Vibration Enabled/Disabled: " + isChecked);
+            });
         }
     }
 }

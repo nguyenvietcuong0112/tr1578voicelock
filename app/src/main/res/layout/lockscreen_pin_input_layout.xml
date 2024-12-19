@@ -106,8 +106,7 @@
     <LinearLayout
         android:id="@+id/keypad_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_20sdp"
         android:orientation="vertical"
         android:paddingLeft="15dp"

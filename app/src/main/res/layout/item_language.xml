@@ -6,6 +6,9 @@
         android:id="@+id/rl_item"
         android:layout_width="match_parent"
         android:layout_height="62dp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/bg_item_home"
         >
 
         <ImageView
@@ -24,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:fontFamily="@font/sourcesanspro_semibold"
-            android:textColor="#010014"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
             app:layout_constraintStart_toEndOf="@id/iv_avatar"
